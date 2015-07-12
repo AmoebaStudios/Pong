@@ -1,0 +1,11 @@
+package Shapes;
+
+public class Square extends Rectangle {
+	float sideLength;
+	public Square(float sideLength, float x, float y) {
+		super(sideLength,sideLength,x,y);
+	}
+	public float getSideLength() {
+		return sideLength;
+	}
+}
