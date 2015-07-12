@@ -1,0 +1,72 @@
+package Shapes;
+
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.util.Color;
+import org.newdawn.slick.opengl.Texture;
+
+public class ShapeCreator {
+	public void createSquare(float sideLength,float x,float y, Color c) {
+		
+		GL11.glColor3f(c.getRed(), c.getGreen(), c.getBlue());
+		GL11.glBegin(GL11.GL_QUADS);
+			GL11.glVertex2f(x, y);
+			GL11.glVertex2f(x+sideLength, y);
+			GL11.glVertex2f(x+sideLength, y+sideLength);
+			GL11.glVertex2f(x, y+sideLength);
+		GL11.glEnd();
+	}
+	public void createSquare(float sideLength,float x,float y, Texture t) {
+		GL11.glColor3f(1, 1, 1);
+		GL11.glBindTexture(GL11.GL_TEXTURE_2D, t.getTextureID());
+		t.bind();
+		GL11.glBegin(GL11.GL_QUADS);
+			GL11.glTexCoord2f(0,0);
+			GL11.glVertex2f(x, y);
+			GL11.glTexCoord2f(0,1);
+			GL11.glVertex2f(x+sideLength, y);
+			GL11.glTexCoord2f(1,1);
+			GL11.glVertex2f(x+sideLength, y+sideLength);
+			GL11.glTexCoord2f(1,0);
+			GL11.glVertex2f(x, y+sideLength);
+		GL11.glEnd();
+	}
+	public void createRectangle(float width,float height,float x,float y, Texture t) {
+		GL11.glColor3f(1, 1, 1);
+		GL11.glBindTexture(GL11.GL_TEXTURE_2D, t.getTextureID());
+		t.bind();
+		GL11.glBegin(GL11.GL_QUADS);
+			GL11.glTexCoord2f(0,0);
+			GL11.glVertex2f(x, y);
+			GL11.glTexCoord2f(0,1);
+			GL11.glVertex2f(x+width, y);
+			GL11.glTexCoord2f(1,1);
+			GL11.glVertex2f(x+width, y+height);
+			GL11.glTexCoord2f(1,0);
+			GL11.glVertex2f(x, y+height);
+		GL11.glEnd();
+	}
+public void createRectangle(int width,int height,float x,float y, Color c) {
+		
+		GL11.glColor3f(c.getRed(), c.getGreen(), c.getBlue());
+		GL11.glBegin(GL11.GL_QUADS);
+			GL11.glVertex2f(x, y);
+			GL11.glVertex2f(x+width, y);
+			GL11.glVertex2f(x+width, y+height);
+			GL11.glVertex2f(x, y+height);
+		GL11.glEnd();
+}
+
+public void createRectangle(Rectangle r, Color c) {
+	float x = r.getX();
+	float y = r.getY();
+	float width = r.getWidth();
+	float height = r.getHeight();
+	GL11.glColor3f(c.getRed(), c.getGreen(), c.getBlue());
+	GL11.glBegin(GL11.GL_QUADS);
+		GL11.glVertex2f(x, y);
+		GL11.glVertex2f(x+width, y);
+		GL11.glVertex2f(x+width, y+height);
+		GL11.glVertex2f(x, y+height);
+	GL11.glEnd();
+}
+}
