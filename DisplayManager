@@ -1,0 +1,47 @@
+package Rendering;
+
+import org.lwjgl.LWJGLException;
+import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.DisplayMode;
+import org.lwjgl.opengl.GL11;
+
+public class DisplayManager {
+	final int WIDTH = 640;
+	final int HEIGHT = 480;
+	final String TITLE = "Pong";
+	final int FPS_CAP = 120;
+	public void glInit() {
+		try {
+			Display.setDisplayMode(new DisplayMode(WIDTH, HEIGHT));
+			Display.create();
+			Display.setTitle(TITLE);
+			//Make it 2D
+			GL11.glMatrixMode(GL11.GL_PROJECTION);
+			GL11.glLoadIdentity(); // Resets any previous projection matrices
+			GL11.glOrtho(0, WIDTH, HEIGHT, 0, 1, -1);
+			GL11.glMatrixMode(GL11.GL_MODELVIEW);
+			GL11.glEnable(GL11.GL_TEXTURE_2D);
+		} catch (LWJGLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void render() {
+		Display.sync(FPS_CAP);
+		
+		Display.update();
+	}
+	public void cleanUp() {
+		Display.destroy();
+	}
+	public int getWIDTH() {
+		return WIDTH;
+	}
+	public int getHEIGHT() {
+		return HEIGHT;
+	}
+	public String getTITLE() {
+		return TITLE;
+	}
+	
+}
